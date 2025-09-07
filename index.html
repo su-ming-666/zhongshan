@@ -148,7 +148,7 @@
         <tr><th>品項</th><th>價格 (NT$)</th><th>數量</th></tr>
         <tr><td>水餃</td><td>65</td><td><input type="number" min="0" value="0" name="水餃"></td></tr>
         <tr><td>雞排沙茶意麵</td><td>65</td><td><input type="number" min="0" value="0" name="雞排沙茶意麵"></td></tr>
-        <tr><td>餛飩麵</td><td>65</td><td><input type="number" min="0" value="0" name="餛飩麵"></td></tr>
+        <tr><td>餛飩麵</td><td>65</td><td><input type="number" min="0" value"0" name="餛飩麵"></td></tr>
         <tr><td>咖哩雞排飯</td><td>65</td><td><input type="number" min="0" value="0" name="咖哩雞排飯"></td></tr>
         <tr><td>咖哩豬排飯</td><td>65</td><td><input type="number" min="0" value="0" name="咖哩豬排飯"></td></tr>
         <tr><td>咖哩魚/蝦排飯</td><td>65</td><td><input type="number" min="0" value="0" name="咖哩魚蝦排飯"></td></tr>
@@ -185,22 +185,28 @@
       <div class="admin-section">
         <h2>今日訂單統計</h2>
         <table>
-          <tr><th>品項</th><th>價格 (NT$)</th><th>數量</th></tr>
-          <tr><td>水餃</td><td>65</td><td id="qty_水餃">0</td></tr>
-          <tr><td>雞排沙茶意麵</td><td>65</td><td id="qty_雞排沙茶意麵">0</td></tr>
-          <tr><td>餛飩麵</td><td>65</td><td id="qty_餛飩麵">0</td></tr>
-          <tr><td>咖哩雞排飯</td><td>65</td><td id="qty_咖哩雞排飯">0</td></tr>
-          <tr><td>咖哩豬排飯</td><td>65</td><td id="qty_咖哩豬排飯">0</td></tr>
-          <tr><td>咖哩魚/蝦排飯</td><td>65</td><td id="qty_咖哩魚蝦排飯">0</td></tr>
-          <tr><td>咖哩焗烤飯</td><td>70</td><td id="qty_咖哩焗烤飯">0</td></tr>
-          <tr><td>咖哩焗烤麵</td><td>70</td><td id="qty_咖哩焗烤麵">0</td></tr>
-          <tr><td>隨機餐</td><td>65</td><td id="qty_隨機餐">0</td></tr>
-          <tr><td>菲力雞排飯</td><td>65</td><td id="qty_菲力雞排飯">0</td></tr>
-          <tr><td>士林香腸飯</td><td>65</td><td id="qty_士林香腸飯">0</td></tr>
-          <tr><td>卡拉雞腿飯</td><td>65</td><td id="qty_卡拉雞腿飯">0</td></tr>
-          <tr><td>香煎雞腿飯</td><td>65</td><td id="qty_香煎雞腿飯">0</td></tr>
-          <tr><td>韓式手卷</td><td>50</td><td id="qty_韓式手卷">0</td></tr>
-          <tr><td>水果</td><td>25</td><td id="qty_水果">0</td></tr>
+          <tr><th>品項</th><th>價格 (NT$)</th><th>數量</th><th>小計</th></tr>
+          <tr><td>水餃</td><td>65</td><td id="qty_水餃">0</td><td id="sub_水餃">0</td></tr>
+          <tr><td>雞排沙茶意麵</td><td>65</td><td id="qty_雞排沙茶意麵">0</td><td id="sub_雞排沙茶意麵">0</td></tr>
+          <tr><td>餛飩麵</td><td>65</td><td id="qty_餛飩麵">0</td><td id="sub_餛飩麵">0</td></tr>
+          <tr><td>咖哩雞排飯</td><td>65</td><td id="qty_咖哩雞排飯">0</td><td id="sub_咖哩雞排飯">0</td></tr>
+          <tr><td>咖哩豬排飯</td><td>65</td><td id="qty_咖哩豬排飯">0</td><td id="sub_咖哩豬排飯">0</td></tr>
+          <tr><td>咖哩魚/蝦排飯</td><td>65</td><td id="qty_咖哩魚蝦排飯">0</td><td id="sub_咖哩魚蝦排飯">0</td></tr>
+          <tr><td>咖哩焗烤飯</td><td>70</td><td id="qty_咖哩焗烤飯">0</td><td id="sub_咖哩焗烤飯">0</td></tr>
+          <tr><td>咖哩焗烤麵</td><td>70</td><td id="qty_咖哩焗烤麵">0</td><td id="sub_咖哩焗烤麵">0</td></tr>
+          <tr><td>隨機餐</td><td>65</td><td id="qty_隨機餐">0</td><td id="sub_隨機餐">0</td></tr>
+          <tr><td>菲力雞排飯</td><td>65</td><td id="qty_菲力雞排飯">0</td><td id="sub_菲力雞排飯">0</td></tr>
+          <tr><td>士林香腸飯</td><td>65</td><td id="qty_士林香腸飯">0</td><td id="sub_士林香腸飯">0</td></tr>
+          <tr><td>卡拉雞腿飯</td><td>65</td><td id="qty_卡拉雞腿飯">0</td><td id="sub_卡拉雞腿飯">0</td></tr>
+          <tr><td>香煎雞腿飯</td><td>65</td><td id="qty_香煎雞腿飯">0</td><td id="sub_香煎雞腿飯">0</td></tr>
+          <tr><td>韓式手卷</td><td>50</td><td id="qty_韓式手卷">0</td><td id="sub_韓式手卷">0</td></tr>
+          <tr><td>水果</td><td>25</td><td id="qty_水果">0</td><td id="sub_水果">0</td></tr>
+          <!-- 添加总价格行 -->
+          <tr style="font-weight: bold; background-color: #f8f9fa;">
+            <td colspan="2">總計</td>
+            <td id="total_qty">0</td>
+            <td id="total_amount">0</td>
+          </tr>
         </table>
       </div>
 
@@ -415,6 +421,8 @@
     async function updateAdminQuantities() {
       const todayKey = getTodayKey();
       let itemCount = {};
+      let totalQty = 0;
+      let totalAmount = 0;
       
       for (let item in prices) {
         itemCount[item] = 0;
@@ -434,9 +442,21 @@
           });
         });
         
+        // 更新表格中的数量和计算小计
         for (let item in prices) {
-          document.getElementById(`qty_${item}`).textContent = itemCount[item];
+          const quantity = itemCount[item];
+          const subtotal = quantity * prices[item];
+          
+          document.getElementById(`qty_${item}`).textContent = quantity;
+          document.getElementById(`sub_${item}`).textContent = subtotal;
+          
+          totalQty += quantity;
+          totalAmount += subtotal;
         }
+        
+        // 更新总计行
+        document.getElementById("total_qty").textContent = totalQty;
+        document.getElementById("total_amount").textContent = totalAmount;
       } catch (error) {
         console.error("更新數量失敗:", error);
       }
@@ -509,12 +529,12 @@
             html += `<h3>日期: ${date}</h3>`;
             ordersByDate[date].forEach(order => {
               html += `<p><b>學號: ${order.studentID}</b> - 時間: ${order.time} - 總金額: NT$${order.total}</p><ul>`;
-              order.orders.forEach(o => {
-                html += `<li>${o.item} x ${o.qty} = NT$${o.subtotal}</li>`;
-              });
-              html += `</ul>`;
+            order.orders.forEach(o => {
+              html += `<li>${o.item} x ${o.qty} = NT$${o.subtotal}</li>`;
             });
+            html += `</ul>`;
           });
+        });
           
           html += `<div style="margin-top: 20px; padding: 10px; background: #e9ecef; border-radius: 5px;">
                     <p><strong>總訂單數: ${querySnapshot.size}</strong></p>
@@ -547,4 +567,4 @@
     };
   </script>
 </body>
-</html>
+  </html>
