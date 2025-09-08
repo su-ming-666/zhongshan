@@ -7,7 +7,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <style>
-    /* 样式保持不变 */
     body { 
       font-family: Arial, sans-serif; 
       margin: 20px; 
@@ -140,7 +139,7 @@
   </style>
 </head>
 <body>
-  <h1>資訊科若水點餐系統  </h1>
+  <h1>若水點餐系統（二甲）  </h1>
 
   <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'StudentTab')">學生端</button>
@@ -239,7 +238,6 @@
   </div>
 
   <script>
-    // Firebase 配置 - 使用您提供的配置
     const firebaseConfig = {
       apiKey: "AIzaSyC1ZQK87KQgXKbJpaT992Xi90oyUOmdBFY",
       authDomain: "lunch-order-system-38392.firebaseapp.com",
@@ -250,11 +248,9 @@
       measurementId: "G-6J5TTXLGEN"
     };
 
-    // 初始化 Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-
-    // 全局变量
+    
     const prices = {
       "水餃":65, "雞排沙茶意麵":65, "餛飩麵":65, "咖哩雞排飯":65, 
       "咖哩豬排飯":65, "咖哩魚蝦排飯":65, "咖哩焗烤飯":70, "咖哩焗烤麵":70, 
@@ -262,13 +258,10 @@
       "香煎雞腿飯":65, "韓式手卷":50, "水果":25
     };
 
-    // 存储最后刷新日期的变量
     let lastRefreshDate = null;
     let midnightTimer = null;
 
-    // 检查 Firebase 连接状态
     function checkFirebaseConnection() {
-      // 简单的连接测试
       db.collection("orders").limit(1).get()
         .then(() => {
           updateCloudStatus(true, "studentCloudStatus");
@@ -280,8 +273,7 @@
           updateCloudStatus(false, "adminCloudStatus");
         });
     }
-
-    // 标签页切换功能
+    
     function openTab(evt, tabName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -296,41 +288,33 @@
       evt.currentTarget.className += " active";
     }
 
-    // 获取今天的日期键
     function getTodayKey() {
       return new Date().toISOString().split('T')[0];
     }
 
-    // 检查是否需要刷新（每日凌晨12点）
     function checkAndResetAtMidnight() {
       const today = getTodayKey();
       
-      // 如果最后刷新日期不是今天，说明是新的一天
       if (lastRefreshDate !== today) {
         lastRefreshDate = today;
-        
-        // 如果管理员已登录，则刷新统计数据
+      
         if (document.getElementById('adminContent').style.display !== 'none') {
           updateAdminQuantities();
         }
       }
     }
 
-    // 设置午夜定时器
     function setupMidnightReset() {
-      // 清除现有定时器
+      
       if (midnightTimer) {
         clearInterval(midnightTimer);
       }
       
-      // 设置定时器，每分钟检查一次是否到了新的一天
       midnightTimer = setInterval(checkAndResetAtMidnight, 60000);
       
-      // 立即检查一次
       checkAndResetAtMidnight();
     }
 
-    // 学生端功能
     async function calculateOrder() {
       let form = document.getElementById("orderForm");
       let studentID = document.getElementById("studentID").value.trim();
@@ -346,7 +330,6 @@
       let dateKey = getTodayKey();
       let timeStr = now.toLocaleTimeString('zh-TW');
       
-      // 计算订单
       for (let item in prices) {
         let qty = parseInt(form[item].value);
         if (qty > 0) {
@@ -365,10 +348,8 @@
       summary += `</ul><h3>總金額：NT$${total}</h3>`;
       document.getElementById("orderSummary").innerHTML = summary;
       
-      // 保存订单到 Firebase
       await saveOrderToFirebase(studentID, orderItems, total, dateKey, timeStr);
       
-      // 清空表单
       for (let item in prices) {
         form[item].value = "0";
       }
@@ -376,7 +357,6 @@
 
     async function saveOrderToFirebase(studentID, orders, total, date, time) {
       try {
-        // 添加订单到 Firestore
         await db.collection("orders").add({
           studentID: studentID,
           orders: orders,
@@ -417,7 +397,6 @@
             return;
           }
           
-          // 在客户端进行排序
           const orders = [];
           querySnapshot.forEach((doc) => {
             const data = doc.data();
@@ -428,7 +407,6 @@
             });
           });
           
-          // 按时间降序排序
           orders.sort((a, b) => b.timestamp - a.timestamp);
           
           html = `<h2>個人歷史訂單紀錄 - 學號: ${studentID} (共 ${orders.length} 筆)</h2>`;
@@ -447,19 +425,16 @@
           console.error("獲取歷史訂單失敗:", error);
           document.getElementById("history").innerHTML = html + `<p class="cloud-error">加載失敗: ${error.message}</p>`;
         });
-    }
-
-    // 管理员功能
+  ｝
     function login() {
       const user = document.getElementById('adminUser').value;
       const pass = document.getElementById('adminPass').value;
       
-      // 简单验证
       if (user === 'admin' && pass === '1234') {
         document.getElementById('loginDiv').style.display = 'none';
         document.getElementById('adminContent').style.display = 'block';
         updateAdminQuantities();
-        setupMidnightReset(); // 设置午夜刷新定时器
+        setupMidnightReset(); 
       } else {
         alert('帳號或密碼錯誤');
       }
@@ -489,7 +464,6 @@
           });
         });
         
-        // 更新表格中的数量和计算小计
         for (let item in prices) {
           const quantity = itemCount[item];
           const subtotal = quantity * prices[item];
@@ -501,7 +475,6 @@
           totalAmount += subtotal;
         }
         
-        // 更新总计行
         document.getElementById("total_qty").textContent = totalQty;
         document.getElementById("total_amount").textContent = totalAmount;
       } catch (error) {
@@ -554,7 +527,6 @@
             return;
           }
           
-          // 在客户端按日期分组和排序
           const ordersByDate = {};
           let totalRevenue = 0;
           
@@ -567,7 +539,6 @@
             totalRevenue += data.total;
           });
           
-          // 按日期排序
           const sortedDates = Object.keys(ordersByDate).sort().reverse();
           
           html = `<h2>雲端全部訂單數據 (共 ${querySnapshot.size} 筆)</h2>`;
@@ -596,7 +567,6 @@
         });
     }
 
-    // 更新云端状态显示
     function updateCloudStatus(isConnected, elementId) {
       const statusElement = document.getElementById(elementId);
       if (isConnected) {
@@ -607,11 +577,9 @@
         statusElement.textContent = "雲端狀態: 連接失敗";
       }
     }
-
-    // 初始化
+      
     window.onload = function() {
       checkFirebaseConnection();
-      // 初始化最后刷新日期
       lastRefreshDate = getTodayKey();
     };
   </script>
